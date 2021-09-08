@@ -1,5 +1,6 @@
 import logo from "../../Assets/logo.png";
-import { Container, Form, Button } from "./HomeStyle";
+import { Link } from "react-router-dom";
+import { Container, Form, Button } from "./Style";
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
                 <input type="password" placeholder="senha" />
             </Form>
             <Button>Entrar</Button>
-            <a href="#">Não tem uma conta? Cadastre-se!</a>
+            <Link to={"/cadastro"}>Não tem uma conta? Cadastre-se!</Link>
         </Container>
     );
 };

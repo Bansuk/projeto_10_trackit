@@ -27,9 +27,12 @@ const Form = styled.form`
     margin-top: 33px;
 
     input {
+        box-sizing: border-box;
         width: 303px;
         height: 45px;
         margin-bottom: 5px;
+        border: 1px solid #d5d5d5;
+        border-radius: 5px;
     }
 
     input::placeholder {
