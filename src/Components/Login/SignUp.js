@@ -64,7 +64,11 @@ const SignUp = () => {
                     disabled={!isEnabled}
                 />
             </Form>
-            <Button onClick={updateSignUpInfo} disabled={!isEnabled}>
+            <Button
+                onClick={updateSignUpInfo}
+                isEnabled={isEnabled}
+                disabled={!isEnabled}
+            >
                 {isEnabled ? (
                     "Cadastrar"
                 ) : (

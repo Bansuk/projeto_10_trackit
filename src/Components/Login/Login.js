@@ -5,7 +5,7 @@ import { sendSignInInfo } from "../../Services/Trackit";
 import Loader from "react-loader-spinner";
 import logo from "../../Assets/logo.png";
 
-const Login = setToken => {
+const Login = ({ setToken, setUser }) => {
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,6 +20,7 @@ const Login = setToken => {
         sendSignInInfo(body)
             .then(res => {
                 setToken(res.data.token);
+                setUser(res.data);
                 history.push("/hoje");
             })
             .catch(err => {
