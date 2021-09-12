@@ -1,8 +1,8 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import GlobalStyle from "./GlobalStyle/globalStyles";
-import Login from "./Components/Login/Login";
-import SignUp from "./Components/Login/SignUp";
+import Login from "./Components/LoginAndSignUp/Login";
+import SignUp from "./Components/LoginAndSignUp/SignUp";
 import Header from "./Components/Header/Header";
 import UserContext from "./Contexts/UserContext";
 import Footer from "./Components/Footer/Footer";

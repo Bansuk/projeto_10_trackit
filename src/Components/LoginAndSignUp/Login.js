@@ -11,11 +11,14 @@ const Login = ({ setToken, setUser }) => {
     const [password, setPassword] = useState("");
     const [isEnabled, setIsEnabled] = useState(true);
 
-    const signIn = () => {
+    const signIn = e => {
+        e.preventDefault();
+
         const body = {
             email,
             password,
         };
+
         setIsEnabled(false);
         sendSignInInfo(body)
             .then(res => {
@@ -32,13 +35,14 @@ const Login = ({ setToken, setUser }) => {
     return (
         <Container>
             <img src={logo} alt={"Logo da TrackIt"} />
-            <Form isEnabled={isEnabled}>
+            <Form onSubmit={signIn} isEnabled={isEnabled}>
                 <input
                     type="email"
                     placeholder="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     disabled={!isEnabled}
+                    required
                 />
                 <input
                     type="password"
@@ -46,24 +50,25 @@ const Login = ({ setToken, setUser }) => {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     disabled={!isEnabled}
+                    required
                 />
+                <Button
+                    type="submit"
+                    isEnabled={isEnabled}
+                    disabled={!isEnabled}
+                >
+                    {isEnabled ? (
+                        "Entrar"
+                    ) : (
+                        <Loader
+                            type="ThreeDots"
+                            color="#FFF"
+                            height={45}
+                            width={100}
+                        />
+                    )}
+                </Button>
             </Form>
-            <Button
-                onClick={signIn}
-                isEnabled={isEnabled}
-                disabled={!isEnabled}
-            >
-                {isEnabled ? (
-                    "Entrar"
-                ) : (
-                    <Loader
-                        type="ThreeDots"
-                        color="#FFF"
-                        height={45}
-                        width={100}
-                    />
-                )}
-            </Button>
             <Link to={"/cadastro"}>Não tem uma conta? Cadastre-se!</Link>
         </Container>
     );

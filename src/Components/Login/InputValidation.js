@@ -1,3 +1,0 @@
-const InputValidation = () => {
-    const validateInput = () => {};
-};

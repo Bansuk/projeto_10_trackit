@@ -22,8 +22,8 @@ const Container = styled.div`
 
 const Form = styled.form`
     display: inherit;
-    justify-content: inherit;
     flex-direction: inherit;
+    justify-content: inherit;
     margin-top: 33px;
 
     & input {

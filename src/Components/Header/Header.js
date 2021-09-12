@@ -4,15 +4,13 @@ import logo from "../../Assets/TrackIt.png";
 import UserContext from "../../Contexts/UserContext";
 
 const Header = () => {
-    const user = useContext(UserContext);
+    const { user } = useContext(UserContext);
+
     return (
         <Container>
             <ImagesContainer>
                 <img src={logo} alt="Logo da TrackIt" />
-                <UserPicture
-                    src={user.user.image}
-                    alt="Foto de perfil do usuário"
-                />
+                <UserPicture src={user.image} alt="Foto de perfil do usuário" />
             </ImagesContainer>
         </Container>
     );
@@ -25,8 +23,8 @@ const Container = styled.header`
     background-color: #126ba5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
-    justify-content: center;
     height: 70px;
+    justify-content: center;
     left: 0;
     position: fixed;
     top: 0;
