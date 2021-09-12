@@ -28,14 +28,16 @@ const Footer = () => {
             <Button onClick={() => redirectUser("/habitos")}>Hábitos</Button>
             <ProgressButton onClick={() => redirectUser("/hoje")}>
                 <CircularProgressbar
-                    value={0}
+                    value={50}
                     text={"Hoje"}
+                    background
+                    backgroundPadding={8}
                     styles={buildStyles({
+                        backgroundColor: "#52B6FF",
+                        pathColor: "#fff",
+                        textColor: "#fff",
                         textSize: "18px",
-                        textColor: "#f88",
-                        trailColor: "#52B6FF",
-                        backgroundColor: "red",
-                        pathColor: `rgba(1, 152, 199, 10)`,
+                        trailColor: "transparent",
                     })}
                 />
             </ProgressButton>
@@ -57,7 +59,7 @@ const Container = styled.footer`
     height: 70px;
     justify-content: space-evenly;
     left: 0;
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: 1;
 `;
@@ -69,7 +71,7 @@ const Button = styled.button`
 `;
 
 const ProgressButton = styled.button`
-    background-color: red;
+    background-color: transparent;
     font-family: inherit;
     margin-bottom: 35px;
     position: relative;

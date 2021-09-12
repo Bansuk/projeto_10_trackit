@@ -5,12 +5,14 @@ import UserContext from "../../Contexts/UserContext";
 
 const Header = () => {
     const user = useContext(UserContext);
-
     return (
         <Container>
             <ImagesContainer>
                 <img src={logo} alt="Logo da TrackIt" />
-                <UserPicture src={user.image} alt="Foto de perfil do usuário" />
+                <UserPicture
+                    src={user.user.image}
+                    alt="Foto de perfil do usuário"
+                />
             </ImagesContainer>
         </Container>
     );
@@ -26,7 +28,7 @@ const Container = styled.header`
     justify-content: center;
     height: 70px;
     left: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1;
