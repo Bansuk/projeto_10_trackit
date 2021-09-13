@@ -6,7 +6,7 @@ import {
     Checkbox,
     InnerNewHabitForm,
 } from "./HabitsStyles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setUserHabit } from "../../Services/Trackit";
 import { useContext } from "react";
 import UserContext from "../../Contexts/UserContext";
@@ -18,6 +18,16 @@ const HabitForm = ({ setIsHabitFormActive, weekDays, setUpdateHabits }) => {
     const [name, setName] = useState("");
     const [isEnabled, setIsEnabled] = useState(true);
     const days = [];
+
+    useEffect(() => {
+        const json = JSON.stringify(window.localStorage.getItem("name"));
+        const cleanJSON = JSON.parse(json);
+        setName(cleanJSON);
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem("name", name);
+    }, [name]);
 
     const selectDay = day => {
         if (days.includes(day)) {
