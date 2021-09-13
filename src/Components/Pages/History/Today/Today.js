@@ -18,22 +18,18 @@ const Today = ({ setTodayProgress }) => {
     const [numDoneHabits, setnumDoneHabits] = useState(0);
 
     useEffect(() => {
-        let mounted = true;
-        if (mounted) {
-            getTodayHabits(token)
-                .then(res => {
-                    setHabits(res.data);
-                    setnumDoneHabits(habits.filter(habit => habit.done).length);
-                    setTodayProgress(
-                        parseInt((numDoneHabits / habits.length) * 100)
-                    );
-                })
-                .catch(err => {
-                    alert("Erro ao obter dados do servidor. Tente novamente!");
-                });
-        }
-        return () => (mounted = false);
-    }, [token, habits, numDoneHabits, setTodayProgress]);
+        getTodayHabits(token)
+            .then(res => {
+                setHabits(res.data);
+                setnumDoneHabits(habits.filter(habit => habit.done).length);
+                setTodayProgress(
+                    parseInt((numDoneHabits / habits.length) * 100)
+                );
+            })
+            .catch(err => {
+                alert("Erro ao obter dados do servidor. Tente novamente!");
+            });
+    }, []);
 
     return (
         <Container>
