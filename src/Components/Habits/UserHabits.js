@@ -4,8 +4,21 @@ import {
     CheckboxButton,
     HabitCard,
 } from "./HabitsStyles";
+import { deleteHabit } from "../../Services/Trackit";
+import { useContext } from "react";
+import UserContext from "../../Contexts/UserContext";
 
-const UserHabits = ({ name, days, weekDays }) => {
+const UserHabits = ({ id, name, days, weekDays, setUpdateHabits }) => {
+    const { token } = useContext(UserContext);
+
+    const confirmDeletion = () => {
+        if (
+            window.confirm(`Vocễ tem certeza que quer deletar o item ${name}?`)
+        ) {
+            deleteHabit(token, id);
+            setUpdateHabits(true);
+        }
+    };
     return (
         <HabitCard>
             <InnerHabitCard isUserHabits={true}>
@@ -22,7 +35,10 @@ const UserHabits = ({ name, days, weekDays }) => {
                 </Checkbox>
                 <div>
                     {" "}
-                    <img src="../../Assets/check.png" />
+                    <img
+                        onClick={confirmDeletion}
+                        src="../../Assets/check.png"
+                    />
                 </div>
             </InnerHabitCard>
         </HabitCard>

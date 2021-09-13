@@ -52,6 +52,13 @@ const uncheckHabit = (token, id) => {
     return axios.post(`${HABITS_URL}/${id}/uncheck`, "", config);
 };
 
+const deleteHabit = (token, id) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    return axios.delete(`${HABITS_URL}/${id}`, config);
+};
+
 export {
     sendSignUpInfo,
     sendSignInInfo,
@@ -60,4 +67,5 @@ export {
     getTodayHabits,
     checkHabit,
     uncheckHabit,
+    deleteHabit,
 };

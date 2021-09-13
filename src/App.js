@@ -14,6 +14,7 @@ function App() {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(null);
     const [todayProgress, setTodayProgress] = useState(0);
+    const [updateHabits, setUpdateHabits] = useState(false);
 
     return (
         <UserContext.Provider value={{ user, token, todayProgress }}>
@@ -30,7 +31,12 @@ function App() {
                             <Route path="/hoje" exact>
                                 <Today setTodayProgress={setTodayProgress} />
                             </Route>
-                            <Route path="/habitos" exact component={Habits} />
+                            <Route path="/habitos" exact>
+                                <Habits
+                                    setUpdateHabits={setUpdateHabits}
+                                    updateHabits={updateHabits}
+                                />
+                            </Route>
                             <Route
                                 path="/historico"
                                 exact

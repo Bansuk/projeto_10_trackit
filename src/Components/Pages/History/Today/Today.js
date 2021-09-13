@@ -13,14 +13,14 @@ const Today = ({ setTodayProgress }) => {
     require("dayjs/locale/pt-br");
     dayjs.locale("pt-br");
     const today = dayjs().format("dddd, DD/MM");
-    const token = useContext(UserContext);
+    const { token } = useContext(UserContext);
     const [habits, setHabits] = useState([]);
     const [numDoneHabits, setnumDoneHabits] = useState(0);
 
     useEffect(() => {
         let mounted = true;
         if (mounted) {
-            getTodayHabits(token.token)
+            getTodayHabits(token)
                 .then(res => {
                     setHabits(res.data);
                     setnumDoneHabits(habits.filter(habit => habit.done).length);
@@ -33,7 +33,7 @@ const Today = ({ setTodayProgress }) => {
                 });
         }
         return () => (mounted = false);
-    }, [token.token, habits, numDoneHabits, setTodayProgress]);
+    }, [token, habits, numDoneHabits, setTodayProgress]);
 
     return (
         <Container>

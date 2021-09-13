@@ -4,7 +4,6 @@ import {
     SaveButton,
     Buttons,
     Checkbox,
-    CheckboxButton,
     InnerNewHabitForm,
 } from "./HabitsStyles";
 import { useState } from "react";
@@ -14,7 +13,7 @@ import UserContext from "../../Contexts/UserContext";
 import Loader from "react-loader-spinner";
 import Day from "./Day";
 
-const HabitForm = ({ setIsHabitFormActive, weekDays }) => {
+const HabitForm = ({ setIsHabitFormActive, weekDays, setUpdateHabits }) => {
     const token = useContext(UserContext);
     const [name, setName] = useState("");
     const [isEnabled, setIsEnabled] = useState(true);
@@ -42,6 +41,7 @@ const HabitForm = ({ setIsHabitFormActive, weekDays }) => {
                 days.splice(0, days.length);
                 setIsEnabled(true);
                 setIsHabitFormActive(false);
+                setUpdateHabits(true);
             })
             .catch(err => {
                 alert("Erro ao criar hábito! Tente novamente.");
@@ -63,6 +63,7 @@ const HabitForm = ({ setIsHabitFormActive, weekDays }) => {
                 <Checkbox>
                     {weekDays.map((weekDay, index) => (
                         <Day
+                            key={index}
                             selectDay={selectDay}
                             weekDay={weekDay}
                             index={index}
