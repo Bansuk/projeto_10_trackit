@@ -9,11 +9,51 @@ const Form = styled.div`
 `;
 
 const HabitCard = styled.div`
-    background-color: grey;
+    background-color: #fff;
     border-radius: 5px;
     height: 90px;
+    margin-bottom: 10px;
     width: 100%;
+`;
+
+const InnerHabitCard = styled.div`
     display: flex;
+    justify-content: space-between;
+    margin: 0 auto 0 auto;
+    padding-top: 15px;
+    width: 80vw;
+
+    & h1 {
+        color: #666;
+        font-size: 20px;
+        word-wrap: break-word;
+    }
+`;
+
+const HabitSequenceTracker = styled.div`
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    margin-top: 7px;
+`;
+
+const TodayCheckbox = styled.div`
+    align-items: center;
+    background-color: #ebebeb;
+    border-radius: 5px;
+    border: 1px solid #e7e7e7;
+    box-sizing: border-box;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    margin-left: 35px;
+    width: 70px;
+
+    & img {
+        height: 28px;
+        width: 35px;
+    }
 `;
 
 const Content = styled.div`
@@ -125,4 +165,7 @@ export {
     Container,
     HeaderContainer,
     Text,
+    InnerHabitCard,
+    HabitSequenceTracker,
+    TodayCheckbox,
 };

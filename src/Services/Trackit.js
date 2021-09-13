@@ -31,4 +31,17 @@ const setUserHabit = (token, body) => {
     return axios.post(HABITS_URL, body, config);
 };
 
-export { sendSignUpInfo, sendSignInInfo, getUserHabits, setUserHabit };
+const getTodayHabits = token => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    return axios.get(`${HABITS_URL}/today`, config);
+};
+
+export {
+    sendSignUpInfo,
+    sendSignInInfo,
+    getUserHabits,
+    setUserHabit,
+    getTodayHabits,
+};
