@@ -13,18 +13,9 @@ import UserContext from "../../Contexts/UserContext";
 import Loader from "react-loader-spinner";
 import Day from "./Day";
 
-const HabitForm = ({
-    setIsHabitFormActive,
-    weekDays,
-    setUpdateHabits,
-    saveTempHabitInfo,
-    tempName,
-    tempDays,
-}) => {
+const HabitForm = ({ setIsHabitFormActive, weekDays, setUpdateHabits }) => {
     const token = useContext(UserContext);
-    console.log(tempName);
-    const [name, setName] = useState(tempName);
-    console.log(name);
+    const [name, setName] = useState("");
     const [isEnabled, setIsEnabled] = useState(true);
     const days = [];
 
@@ -88,7 +79,6 @@ const HabitForm = ({
                     <CancelButton
                         onClick={() => {
                             setIsHabitFormActive(false);
-                            saveTempHabitInfo(name, days);
                         }}
                         disabled={!isEnabled}
                     >

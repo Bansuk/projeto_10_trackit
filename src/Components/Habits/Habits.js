@@ -11,7 +11,6 @@ const Habits = ({ setUpdateHabits, updateHabits }) => {
     const [habits, setHabits] = useState([]);
     const [isHabitFormActive, setIsHabitFormActive] = useState(false);
     const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
-    let tempName = "";
 
     useEffect(() => {
         setUpdateHabits(false);
@@ -23,11 +22,6 @@ const Habits = ({ setUpdateHabits, updateHabits }) => {
                 alert("Erro ao obter dados do servidor. Tente novamente!");
             });
     }, [setUpdateHabits, updateHabits, token, setHabits]);
-
-    const saveTempHabitInfo = (name, days) => {
-        console.log(name);
-        tempName = name;
-    };
 
     return (
         <Container>
@@ -41,8 +35,6 @@ const Habits = ({ setUpdateHabits, updateHabits }) => {
                     weekDays={weekDays}
                     setHabits={setHabits}
                     setUpdateHabits={setUpdateHabits}
-                    saveTempHabitInfo={saveTempHabitInfo}
-                    tempName={tempName}
                 />
             ) : (
                 ""
