@@ -18,17 +18,21 @@ const Today = ({ setTodayProgress }) => {
     const [numDoneHabits, setnumDoneHabits] = useState(0);
 
     useEffect(() => {
-        getTodayHabits(token.token)
-            .then(res => {
-                setHabits(res.data);
-                setnumDoneHabits(habits.filter(habit => habit.done).length);
-                setTodayProgress(
-                    parseInt((numDoneHabits / habits.length) * 100)
-                );
-            })
-            .catch(err => {
-                alert("Erro ao obter dados do servidor. Tente novamente!");
-            });
+        let mounted = true;
+        if (mounted) {
+            getTodayHabits(token.token)
+                .then(res => {
+                    setHabits(res.data);
+                    setnumDoneHabits(habits.filter(habit => habit.done).length);
+                    setTodayProgress(
+                        parseInt((numDoneHabits / habits.length) * 100)
+                    );
+                })
+                .catch(err => {
+                    alert("Erro ao obter dados do servidor. Tente novamente!");
+                });
+        }
+        return () => (mounted = false);
     }, [token.token, habits, numDoneHabits, setTodayProgress]);
 
     return (
@@ -42,7 +46,7 @@ const Today = ({ setTodayProgress }) => {
                     : "Nenhum hábito concluído ainda"}
             </TodaySubtitle>
             {habits.map(habit => (
-                <TodayItem habit={habit} />
+                <TodayItem key={habit.id} habit={habit} />
             ))}
         </Container>
     );

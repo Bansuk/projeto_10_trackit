@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const Form = styled.div`
-    background-color: grey;
+const NewHabitForm = styled.div`
+    background-color: #fff;
     border-radius: 5px;
     height: 180px;
     width: 100%;
@@ -25,6 +25,7 @@ const HabitCard = styled.div`
 const InnerHabitCard = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-direction: ${props => (props.isUserHabits ? "column" : "")};
     margin: 0 auto 0 auto;
     padding-top: 15px;
     width: 80vw;
@@ -66,9 +67,8 @@ const TodayCheckbox = styled.div`
     }
 `;
 
-const Content = styled.div`
+const InnerNewHabitForm = styled.div`
     width: 80vw;
-    background-color: grey;
     margin: 15px auto 0 auto;
     height: 150px;
     display: flex;
@@ -100,7 +100,7 @@ const CheckboxButton = styled.button`
     background-color: ${props => (props.isSelected ? "#cfcfcf" : "#fff")};
     border-radius: 5px;
     border: 1px solid #d5d5d5;
-    color: #dbdbdb;
+    color: ${props => (props.isSelected ? "#fff" : "#dbdbdb")};
     font-size: 20px;
     height: 30px;
     margin-right: 5px;
@@ -136,7 +136,7 @@ const CancelButton = styled.button`
 const Container = styled.div`
     font-family: "Lexend Deca", sans-serif;
     width: 90vw;
-    margin: 90px auto 0 auto;
+    margin: 90px auto 110px auto;
 `;
 
 const Text = styled.div`
@@ -164,13 +164,13 @@ const HeaderContainer = styled.div`
 `;
 
 export {
-    Form,
+    NewHabitForm,
     CancelButton,
     SaveButton,
     Buttons,
     Checkbox,
     CheckboxButton,
-    Content,
+    InnerNewHabitForm,
     HabitCard,
     Container,
     HeaderContainer,

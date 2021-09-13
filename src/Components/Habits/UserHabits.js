@@ -1,19 +1,30 @@
-import { Content, Checkbox, CheckboxButton, HabitCard } from "./HabitsStyles";
+import {
+    InnerHabitCard,
+    Checkbox,
+    CheckboxButton,
+    HabitCard,
+} from "./HabitsStyles";
 
-const UserHabits = () => {
+const UserHabits = ({ name, days, weekDays }) => {
     return (
         <HabitCard>
-            <Content>
+            <InnerHabitCard isUserHabits={true}>
+                <h1>{name}</h1>
                 <Checkbox>
-                    <CheckboxButton disabled={true}>D</CheckboxButton>
-                    <CheckboxButton disabled={true}>S</CheckboxButton>
-                    <CheckboxButton disabled={true}>T</CheckboxButton>
-                    <CheckboxButton disabled={true}>Q</CheckboxButton>
-                    <CheckboxButton disabled={true}>Q</CheckboxButton>
-                    <CheckboxButton disabled={true}>S</CheckboxButton>
-                    <CheckboxButton disabled={true}>S</CheckboxButton>
+                    {weekDays.map((weekDay, index) => (
+                        <CheckboxButton
+                            key={index}
+                            isSelected={days.includes(index)}
+                        >
+                            {weekDay}
+                        </CheckboxButton>
+                    ))}
                 </Checkbox>
-            </Content>
+                <div>
+                    {" "}
+                    <img src="../../Assets/check.png" />
+                </div>
+            </InnerHabitCard>
         </HabitCard>
     );
 };

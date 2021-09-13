@@ -1,19 +1,20 @@
 import {
-    Form,
+    NewHabitForm,
     CancelButton,
     SaveButton,
     Buttons,
     Checkbox,
     CheckboxButton,
-    Content,
+    InnerNewHabitForm,
 } from "./HabitsStyles";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { setUserHabit } from "../../Services/Trackit";
 import { useContext } from "react";
 import UserContext from "../../Contexts/UserContext";
 import Loader from "react-loader-spinner";
+import Day from "./Day";
 
-const HabitForm = ({ setIsHabitFormActive }) => {
+const HabitForm = ({ setIsHabitFormActive, weekDays }) => {
     const token = useContext(UserContext);
     const [name, setName] = useState("");
     const [isEnabled, setIsEnabled] = useState(true);
@@ -49,8 +50,8 @@ const HabitForm = ({ setIsHabitFormActive }) => {
     };
 
     return (
-        <Form>
-            <Content>
+        <NewHabitForm>
+            <InnerNewHabitForm isEnabled={isEnabled}>
                 <input
                     type="text"
                     placeholder="nome do hábito"
@@ -60,50 +61,14 @@ const HabitForm = ({ setIsHabitFormActive }) => {
                     disabled={!isEnabled}
                 ></input>
                 <Checkbox>
-                    <CheckboxButton
-                        onClick={() => {
-                            selectDay(0);
-                        }}
-                        disabled={!isEnabled}
-                    >
-                        D
-                    </CheckboxButton>
-                    <CheckboxButton
-                        onClick={() => selectDay(1)}
-                        disabled={!isEnabled}
-                    >
-                        S
-                    </CheckboxButton>
-                    <CheckboxButton
-                        onClick={() => selectDay(2)}
-                        disabled={!isEnabled}
-                    >
-                        T
-                    </CheckboxButton>
-                    <CheckboxButton
-                        onClick={() => selectDay(3)}
-                        disabled={!isEnabled}
-                    >
-                        Q
-                    </CheckboxButton>
-                    <CheckboxButton
-                        onClick={() => selectDay(4)}
-                        disabled={!isEnabled}
-                    >
-                        Q
-                    </CheckboxButton>
-                    <CheckboxButton
-                        onClick={() => selectDay(5)}
-                        disabled={!isEnabled}
-                    >
-                        S
-                    </CheckboxButton>
-                    <CheckboxButton
-                        onClick={() => selectDay(6)}
-                        disabled={!isEnabled}
-                    >
-                        S
-                    </CheckboxButton>
+                    {weekDays.map((weekDay, index) => (
+                        <Day
+                            selectDay={selectDay}
+                            weekDay={weekDay}
+                            index={index}
+                            isEnabled={isEnabled}
+                        />
+                    ))}
                 </Checkbox>
                 <Buttons>
                     <CancelButton
@@ -129,8 +94,8 @@ const HabitForm = ({ setIsHabitFormActive }) => {
                         )}
                     </SaveButton>
                 </Buttons>
-            </Content>
-        </Form>
+            </InnerNewHabitForm>
+        </NewHabitForm>
     );
 };
 
