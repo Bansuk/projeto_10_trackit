@@ -21,15 +21,15 @@ const Today = ({ setTodayProgress }) => {
         getTodayHabits(token)
             .then(res => {
                 setHabits(res.data);
-                setnumDoneHabits(habits.filter(habit => habit.done).length);
+                setnumDoneHabits(res.data.filter(habit => habit.done).length);
                 setTodayProgress(
-                    parseInt((numDoneHabits / habits.length) * 100)
+                    parseInt((numDoneHabits / res.data.length) * 100)
                 );
             })
             .catch(err => {
                 alert("Erro ao obter dados do servidor. Tente novamente!");
             });
-    }, [token, habits, numDoneHabits, setTodayProgress]);
+    }, [token, numDoneHabits, setTodayProgress]);
 
     return (
         <Container>
