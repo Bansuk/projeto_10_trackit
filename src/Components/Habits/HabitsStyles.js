@@ -42,10 +42,10 @@ const HabitSequenceTracker = styled.div`
     flex-direction: column;
     font-size: 13px;
     margin-top: 7px;
+`;
 
-    & span {
-        color: ${props => (props.isSelected ? "#8FC549" : "")};
-    }
+const HabitDaysTracker = styled.span`
+    color: ${props => (props.isSelected ? "#8FC549" : "")};
 `;
 
 const TodayCheckbox = styled.div`
@@ -179,4 +179,5 @@ export {
     HabitSequenceTracker,
     TodayCheckbox,
     TodaySubtitle,
+    HabitDaysTracker,
 };

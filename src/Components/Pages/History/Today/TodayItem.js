@@ -3,6 +3,7 @@ import {
     InnerHabitCard,
     HabitSequenceTracker,
     TodayCheckbox,
+    HabitDaysTracker,
 } from "../../../Habits/HabitsStyles";
 import checkicon from "../../../../Assets/check.png";
 import { checkHabit, uncheckHabit } from "../../../../Services/Trackit";
@@ -23,12 +24,25 @@ const TodayItem = ({ habit }) => {
             <InnerHabitCard>
                 <div>
                     <h1>{habit.name}</h1>
-                    <HabitSequenceTracker isSelected={habit.done}>
+                    <HabitSequenceTracker>
                         <div>
                             Sequência atual:{" "}
-                            <span>{habit.currentSequence} dias</span>
+                            <HabitDaysTracker isSelected={habit.done}>
+                                {habit.currentSequence} dias
+                            </HabitDaysTracker>
                         </div>
-                        <div>Seu recorde: {habit.highestSequence} dias</div>
+                        <div>
+                            Seu recorde:{" "}
+                            <HabitDaysTracker
+                                isSelected={
+                                    habit.done &&
+                                    habit.currentSequence ===
+                                        habit.highestSequence
+                                }
+                            >
+                                {habit.highestSequence} dias
+                            </HabitDaysTracker>
+                        </div>
                     </HabitSequenceTracker>
                 </div>
                 <TodayCheckbox onClick={verifyHabit} isSelected={habit.done}>
