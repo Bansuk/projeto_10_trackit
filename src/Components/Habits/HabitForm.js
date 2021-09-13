@@ -34,6 +34,10 @@ const HabitForm = ({ setIsHabitFormActive, weekDays, setUpdateHabits }) => {
             name,
             days,
         };
+        if (days.length === 0 || name === "") {
+            alert("Por favor, preencha os campos!");
+            return;
+        }
         setIsEnabled(false);
         setUserHabit(token.token, body)
             .then(res => {
