@@ -83,6 +83,36 @@ const CancelButton = styled.button`
     font-size: 16px;
 `;
 
+const Container = styled.div`
+    font-family: "Lexend Deca", sans-serif;
+    width: 90vw;
+    margin: 90px auto 0 auto;
+`;
+
+const Text = styled.div`
+    margin-top: 30px;
+    font-size: 18px;
+    color: #666;
+`;
+
+const HeaderContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 23px;
+    color: #126ba5;
+    margin-bottom: 20px;
+
+    & button {
+        background-color: #52b6ff;
+        border-radius: 4.5px;
+        width: 40px;
+        height: 35px;
+        color: #fff;
+        font-size: 27px;
+    }
+`;
+
 export {
     Form,
     CancelButton,
@@ -92,4 +122,7 @@ export {
     CheckboxButton,
     Content,
     HabitCard,
+    Container,
+    HeaderContainer,
+    Text,
 };

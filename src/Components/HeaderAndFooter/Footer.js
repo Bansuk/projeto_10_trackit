@@ -67,6 +67,7 @@ const Container = styled.footer`
 const Button = styled.button`
     background-color: transparent;
     color: #52b6ff;
+    font-family: inherit;
     font-size: 18px;
 `;
 

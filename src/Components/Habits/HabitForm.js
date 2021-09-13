@@ -62,7 +62,7 @@ const HabitForm = ({ setIsHabitFormActive }) => {
                 <Checkbox>
                     <CheckboxButton
                         onClick={() => {
-                            selectDay(7);
+                            selectDay(0);
                         }}
                         disabled={!isEnabled}
                     >
