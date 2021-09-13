@@ -9,7 +9,7 @@ import UserContext from "../../../../Contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import TodayItem from "./TodayItem";
 
-const Today = () => {
+const Today = ({ setTodayProgress }) => {
     require("dayjs/locale/pt-br");
     dayjs.locale("pt-br");
     const today = dayjs().format("dddd, DD/MM");
@@ -22,11 +22,14 @@ const Today = () => {
             .then(res => {
                 setHabits(res.data);
                 setnumDoneHabits(habits.filter(habit => habit.done).length);
+                setTodayProgress(
+                    parseInt((numDoneHabits / habits.length) * 100)
+                );
             })
             .catch(err => {
                 alert("Erro ao obter dados do servidor. Tente novamente!");
             });
-    }, [token.token, habits]);
+    }, [token.token, habits, numDoneHabits, setTodayProgress]);
 
     return (
         <Container>

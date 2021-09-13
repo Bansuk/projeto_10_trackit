@@ -1,9 +1,12 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { useContext } from "react";
 import { useHistory } from "react-router";
 import "react-circular-progressbar/dist/styles.css";
 import styled from "styled-components";
+import UserContext from "../../Contexts/UserContext";
 
 const Footer = () => {
+    const { todayProgress } = useContext(UserContext);
     const history = useHistory();
 
     const redirectUser = to => {
@@ -28,7 +31,7 @@ const Footer = () => {
             <Button onClick={() => redirectUser("/habitos")}>Hábitos</Button>
             <ProgressButton onClick={() => redirectUser("/hoje")}>
                 <CircularProgressbar
-                    value={50}
+                    value={todayProgress}
                     text={"Hoje"}
                     background
                     backgroundPadding={8}

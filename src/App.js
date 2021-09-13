@@ -13,9 +13,10 @@ import Today from "./Components/Pages/History/Today/Today";
 function App() {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(null);
+    const [todayProgress, setTodayProgress] = useState(0);
 
     return (
-        <UserContext.Provider value={{ user, token }}>
+        <UserContext.Provider value={{ user, token, todayProgress }}>
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact>
@@ -26,7 +27,9 @@ function App() {
                         <Header />
                         <GlobalStyle />
                         <Switch>
-                            <Route path="/hoje" exact component={Today} />
+                            <Route path="/hoje" exact>
+                                <Today setTodayProgress={setTodayProgress} />
+                            </Route>
                             <Route path="/habitos" exact component={Habits} />
                             <Route
                                 path="/historico"

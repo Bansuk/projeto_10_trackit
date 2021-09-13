@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { checkHabit, uncheckHabit } from "../../../../Services/Trackit";
 import {
     HabitCard,
     InnerHabitCard,
@@ -6,17 +8,15 @@ import {
     HabitDaysTracker,
 } from "../../../Habits/HabitsStyles";
 import checkicon from "../../../../Assets/check.png";
-import { checkHabit, uncheckHabit } from "../../../../Services/Trackit";
 import UserContext from "../../../../Contexts/UserContext";
-import { useContext } from "react";
 
 const TodayItem = ({ habit }) => {
-    const token = useContext(UserContext);
+    const { token } = useContext(UserContext);
 
     const verifyHabit = () => {
         habit.done
-            ? uncheckHabit(token.token, habit.id)
-            : checkHabit(token.token, habit.id);
+            ? uncheckHabit(token, habit.id)
+            : checkHabit(token, habit.id);
     };
 
     return (
@@ -46,7 +46,7 @@ const TodayItem = ({ habit }) => {
                     </HabitSequenceTracker>
                 </div>
                 <TodayCheckbox onClick={verifyHabit} isSelected={habit.done}>
-                    <img src={checkicon} alt={"Ícone de marcarção"} />
+                    <img src={checkicon} alt={"Ícone de marcação"} />
                 </TodayCheckbox>
             </InnerHabitCard>
         </HabitCard>
