@@ -3,10 +3,12 @@ import {
     Checkbox,
     CheckboxButton,
     HabitCard,
+    InnerHabitCardDelete,
 } from "./HabitsStyles";
 import { deleteHabit } from "../../Services/Trackit";
 import { useContext } from "react";
 import UserContext from "../../Contexts/UserContext";
+import garbage from "../../Assets/delete.png";
 
 const UserHabits = ({ id, name, days, weekDays, setUpdateHabits }) => {
     const { token } = useContext(UserContext);
@@ -22,24 +24,29 @@ const UserHabits = ({ id, name, days, weekDays, setUpdateHabits }) => {
     return (
         <HabitCard>
             <InnerHabitCard isUserHabits={true}>
-                <h1>{name}</h1>
-                <Checkbox>
-                    {weekDays.map((weekDay, index) => (
-                        <CheckboxButton
-                            key={index}
-                            isSelected={days.includes(index)}
-                        >
-                            {weekDay}
-                        </CheckboxButton>
-                    ))}
-                </Checkbox>
-                <div>
-                    {" "}
-                    <img
-                        onClick={confirmDeletion}
-                        src="../../Assets/check.png"
-                    />
-                </div>
+                <InnerHabitCardDelete>
+                    <div>
+                        <h1>{name}</h1>
+                        <Checkbox>
+                            {weekDays.map((weekDay, index) => (
+                                <CheckboxButton
+                                    key={index}
+                                    isSelected={days.includes(index)}
+                                >
+                                    {weekDay}
+                                </CheckboxButton>
+                            ))}
+                        </Checkbox>
+                    </div>
+                    <div>
+                        {" "}
+                        <img
+                            onClick={confirmDeletion}
+                            src={garbage}
+                            alt={"Íconde de deltar hábito"}
+                        />
+                    </div>
+                </InnerHabitCardDelete>
             </InnerHabitCard>
         </HabitCard>
     );

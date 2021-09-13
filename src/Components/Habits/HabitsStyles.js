@@ -37,6 +37,11 @@ const InnerHabitCard = styled.div`
     }
 `;
 
+const InnerHabitCardDelete = styled.div`
+    display: inherit;
+    justify-content: space-between;
+`;
+
 const HabitSequenceTracker = styled.div`
     color: #666;
     display: flex;
@@ -180,4 +185,5 @@ export {
     TodayCheckbox,
     TodaySubtitle,
     HabitDaysTracker,
+    InnerHabitCardDelete,
 };
