@@ -38,10 +38,26 @@ const getTodayHabits = token => {
     return axios.get(`${HABITS_URL}/today`, config);
 };
 
+const checkHabit = (token, id) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    return axios.post(`${HABITS_URL}/${id}/check`, "", config);
+};
+
+const uncheckHabit = (token, id) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    return axios.post(`${HABITS_URL}/${id}/uncheck`, "", config);
+};
+
 export {
     sendSignUpInfo,
     sendSignInInfo,
     getUserHabits,
     setUserHabit,
     getTodayHabits,
+    checkHabit,
+    uncheckHabit,
 };

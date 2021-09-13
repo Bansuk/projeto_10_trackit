@@ -2,15 +2,12 @@ import dayjs from "dayjs";
 import {
     Container,
     HeaderContainer,
-    HabitCard,
-    InnerHabitCard,
-    HabitSequenceTracker,
-    TodayCheckbox,
+    TodaySubtitle,
 } from "../../../Habits/HabitsStyles";
-import checkicon from "../../../../Assets/check.png";
 import { getTodayHabits } from "../../../../Services/Trackit";
 import UserContext from "../../../../Contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
+import TodayItem from "./TodayItem";
 
 const Today = () => {
     require("dayjs/locale/pt-br");
@@ -18,40 +15,31 @@ const Today = () => {
     const today = dayjs().format("dddd, DD/MM");
     const token = useContext(UserContext);
     const [habits, setHabits] = useState([]);
+    const [numDoneHabits, setnumDoneHabits] = useState(0);
 
     useEffect(() => {
         getTodayHabits(token.token)
             .then(res => {
                 setHabits(res.data);
+                setnumDoneHabits(habits.filter(habit => habit.done).length);
             })
             .catch(err => {
                 alert("Erro ao obter dados do servidor. Tente novamente!");
             });
-    }, [token.token]);
+    }, [token.token, habits]);
 
     return (
         <Container>
             <HeaderContainer>{today}</HeaderContainer>
+            <TodaySubtitle isDone={numDoneHabits}>
+                {numDoneHabits
+                    ? `${parseInt(
+                          (numDoneHabits / habits.length) * 100
+                      )}% dos hábitos concluídos`
+                    : "Nenhum hábito concluído ainda"}
+            </TodaySubtitle>
             {habits.map(habit => (
-                <HabitCard>
-                    <InnerHabitCard>
-                        <div>
-                            <h1>{habit.name}</h1>
-                            <HabitSequenceTracker>
-                                <span>
-                                    Sequência atual: {habit.currentSequence}{" "}
-                                    dias
-                                </span>
-                                <span>
-                                    Seu recorde: {habit.highestSequence} dias
-                                </span>
-                            </HabitSequenceTracker>
-                        </div>
-                        <TodayCheckbox>
-                            <img src={checkicon} alt={"Ícone de marcarção"} />
-                        </TodayCheckbox>
-                    </InnerHabitCard>
-                </HabitCard>
+                <TodayItem habit={habit} />
             ))}
         </Container>
     );

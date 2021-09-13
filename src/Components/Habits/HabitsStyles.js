@@ -8,6 +8,12 @@ const Form = styled.div`
     display: flex;
 `;
 
+const TodaySubtitle = styled.div`
+    color: ${props => (props.isDone ? "#8FC549" : "#bababa")};
+    font-size: 18px;
+    margin: -15px 0 30px 0;
+`;
+
 const HabitCard = styled.div`
     background-color: #fff;
     border-radius: 5px;
@@ -40,7 +46,7 @@ const HabitSequenceTracker = styled.div`
 
 const TodayCheckbox = styled.div`
     align-items: center;
-    background-color: #ebebeb;
+    background-color: ${props => (props.isSelected ? "#8FC549" : "#ebebeb")};
     border-radius: 5px;
     border: 1px solid #e7e7e7;
     box-sizing: border-box;
@@ -168,4 +174,5 @@ export {
     InnerHabitCard,
     HabitSequenceTracker,
     TodayCheckbox,
+    TodaySubtitle,
 };
