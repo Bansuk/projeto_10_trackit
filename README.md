@@ -1,6 +1,5 @@
 # TrackIt
 
-A mobile site for those who don't want to stand in line to get new tickets for the next box office! With Cineflex you can book a movie seat wherever you are!
 A mobile site for tracking your daily activities in a way that it won't be dull! TrackIt has a clean and objective interface so that you can only focus on your goals!
 
 <p align="center">
